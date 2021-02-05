@@ -8,8 +8,9 @@ use Redbastie\Skele\Components\ListComponent;
 class Index extends ListComponent
 {
     public $routeUri = '/DummyRouteUri';
-    public $routeName = 'DummyViewName';
+    public $routeName = 'DummyRouteUri.index';
     // public $routeMiddleware = 'auth';
+    // did this work
 
     public function render()
     {
