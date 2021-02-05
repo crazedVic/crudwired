@@ -20,7 +20,6 @@ Rapid Laravel Livewire + TailwindCSS app development package.
 - [Laravel Livewire](https://github.com/livewire/livewire)
 - [Laravel Timezone](https://github.com/jamesmills/laravel-timezone)
 - [Doctrine DBAL](https://github.com/doctrine/dbal)
-- [Honey](https://github.com/lukeraymonddowning/honey)
 - [TailwindCSS](https://github.com/tailwindlabs/tailwindcss)
 - [Blade Heroicons](https://github.com/blade-ui-kit/blade-heroicons)
 
@@ -124,3 +123,8 @@ Generates a list component with searching & infinite scrolling for the specified
 
     php artisan skele:list Vehicles --model=Vehicle
     php artisan skele:list Admin/Vehicles --model=Admin/Vehicle
+
+
+#### Add package locally to laravel project
+
+    composer config repositories.local path "../redbastie-skele"

@@ -18,17 +18,32 @@ trait ManagesFiles
         return $this->filesystem;
     }
 
-    protected function createFiles($stubFolder, $replaces = [])
+    protected function createFiles($stubFolder, $replaces = [], $force = false)
     {
-        foreach ($this->filesystem()->allFiles(__DIR__ . '/../../resources/stubs/' . $stubFolder) as $file) {
-            $filePath = Str::replaceLast('.stub', '', $this->replace($replaces, $file->getRelativePathname()));
+        $working_folder = str_replace('/', DIRECTORY_SEPARATOR, __DIR__ . '/../../resources/stubs/' . $stubFolder);
 
-            if ($fileDir = implode('/', array_slice(explode('/', $filePath), 0, -1))) {
+        foreach ($this->filesystem()->allFiles($working_folder) as $file) {
+            //$this->info('processing file: ' . $file);
+            // remove stub
+            $filePath = Str::replaceLast('.stub', '', $this->replace($replaces, $file->getRelativePathname()));
+            // fix for multi-OS support
+            $filePath = str_replace('/', DIRECTORY_SEPARATOR, $filePath);
+
+            if ($fileDir = implode(DIRECTORY_SEPARATOR, array_slice(explode(DIRECTORY_SEPARATOR, $filePath), 0, -1))) {
                 $this->filesystem()->ensureDirectoryExists($fileDir);
             }
 
-            $this->filesystem()->put($filePath, $this->replace($replaces, $file->getContents()));
-            $this->warn('Created file: <info>' . $filePath . '</info>');
+           // $this->filesystem()->put($filePath, $this->replace($replaces, $file->getContents()));
+           // $this->warn('Created file: <info>' . $filePath . '</info>');
+
+            // prevent override by default
+            if (!$this->filesystem()->exists($filePath || $force)) {
+                $this->filesystem()->put($filePath, $this->replace($replaces, $file->getContents()));
+                $this->info('Created file: <info>' . $filePath . '</info>');
+            }
+            else{
+                 $this->warn('Unable to create file: <info>' . $filePath . '</info>. File already exists.  Use --force to override.');
+            }
         }
     }
 
@@ -54,5 +69,30 @@ trait ManagesFiles
         }
 
         return $contents;
+    }
+
+    private function mapPath($originalPath)
+    {
+        $arr = explode(DIRECTORY_SEPARATOR, $originalPath, 2);
+        $category = $arr[0];
+        $filename = $arr[1];
+
+        switch ($category){
+            case 'views':
+                return config('livewire.view_path') . DIRECTORY_SEPARATOR . $filename;
+                break;
+            case "models":
+                return config('skele.model_path') . DIRECTORY_SEPARATOR . $filename;
+                break;
+            case "components":
+                return config('livewire.class_namespace') . DIRECTORY_SEPARATOR . $filename;
+                break;
+            case "factories":
+                return config('skele.factory_path') . DIRECTORY_SEPARATOR . $filename;
+                break;
+            default:
+                return $originalPath;
+
+        }
     }
 }

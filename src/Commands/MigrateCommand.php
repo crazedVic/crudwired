@@ -21,7 +21,7 @@ class MigrateCommand extends Command
 
         if ($filesystem->exists($dir = app_path('Models'))) {
             foreach ($filesystem->allFiles($dir) as $file) {
-                $class = app('App\\Models\\' . str_replace(['/', '.php'], ['\\', ''], $file->getRelativePathname()));
+                $class = app(config('skele.model_path') . str_replace(['/', '.php'], ['\\', ''], $file->getRelativePathname()));
 
                 if (method_exists($class, 'migration')) {
                     if (Schema::hasTable($class->getTable())) {

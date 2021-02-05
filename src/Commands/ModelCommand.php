@@ -9,21 +9,21 @@ class ModelCommand extends Command
 {
     use ManagesFiles;
 
-    protected $signature = 'skele:model {class}';
+    protected $signature = 'skele:model {class} {--force}';
 
     public function handle()
     {
-        $modelParser = new ComponentParser('App\\Models', resource_path('views'), $this->argument('class'));
-        $factoryParser = new ComponentParser('Database\\Factories', resource_path('views'), $this->argument('class') . 'Factory');
+        $modelParser = new ComponentParser(config('skele.model_path'),  config('livewire.view_path'), $this->argument('class'));
+        $factoryParser = new ComponentParser(config('skele.factory_path'),  config('livewire.view_path'), $this->argument('class') . 'Factory');
 
         $this->createFiles('model', [
-            'app/Models/DummyModel.php.stub' => $modelParser->relativeClassPath(),
-            'database/factories/DummyFactory.php.stub' => str_replace('app/Database/Factories', 'database/factories', $factoryParser->relativeClassPath()),
+            'models' . DIRECTORY_SEPARATOR . 'DummyModel.php.stub' => $modelParser->relativeClassPath(),
+            'factories' => base_path() .DIRECTORY_SEPARATOR . config('skele.factory_path'),
             'DummyModelNamespace' => $modelParser->classNamespace(),
             'DummyModel' => $modelParser->className(),
             'DummyFactoryNamespace' => $factoryParser->classNamespace(),
             'DummyFactory' => $factoryParser->className(),
-        ]);
+        ], $this->option('force'));
 
         $this->warn('<info>' . $this->argument('class') . '</info> model & factory generated!');
         $this->warn("Don't forget to <info>skele:migrate</info> after updating the new model.");

@@ -5,12 +5,9 @@ namespace Redbastie\Skele\Components;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
-use Lukeraymonddowning\Honey\Traits\WithHoney;
 
 class RegisterComponent extends Component
 {
-    use WithHoney;
-
     public $routeUri = '/register';
     public $routeName = 'register';
     public $routeMiddleware = 'guest';
@@ -32,10 +29,6 @@ class RegisterComponent extends Component
     public function register()
     {
         $validated = $this->validate();
-
-        if (!$this->honeyPasses()) {
-            return;
-        }
 
         $user = User::create($validated);
 

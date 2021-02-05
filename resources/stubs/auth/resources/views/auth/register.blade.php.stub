@@ -27,8 +27,6 @@
             <input type="password" id="password_confirmation" class="w-full" wire:model.defer="model.password_confirmation">
         </div>
 
-        <x-honey/>
-
         <button type="submit" class="text-white bg-black w-full px-3 py-2">
             {{ __('Register') }}
         </button>

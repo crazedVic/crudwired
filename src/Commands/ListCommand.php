@@ -10,7 +10,7 @@ class ListCommand extends Command
 {
     use ManagesFiles;
 
-    protected $signature = 'skele:list {class} {--model=}';
+    protected $signature = 'skele:list {class} {--model=} {--force}';
 
     public function handle()
     {
@@ -20,23 +20,28 @@ class ListCommand extends Command
             return;
         }
 
-        $componentParser = new ComponentParser('App\\Components', resource_path('views'), $this->argument('class'));
-        $modelParser = new ComponentParser('App\\Models', resource_path('views'), $this->option('model'));
+        $componentParser = new ComponentParser(config('livewire.class_namespace'),  config('livewire.view_path'), $this->argument('class'));
+        $modelParser = new ComponentParser(config('skele.model_path'), config('livewire.view_path'), $this->option('model'));
+
+
+        // $this->info('DummyRouteUri: ' . str_replace('.', '/', $componentParser->className()));
+        // $this->info('DummyViewName: ' . str_to_lower($componentParser->className()));
+           
 
         $this->createFiles('list', [
-            'app/Components/DummyComponent.php.stub' => $componentParser->relativeClassPath(),
-            'resources/views/DummyView.blade.php.stub' => $componentParser->relativeViewPath(),
+            'components' . DIRECTORY_SEPARATOR . 'DummyComponent.php.stub' => $componentParser->relativeClassPath(),
+            'views' . DIRECTORY_SEPARATOR . 'DummyView.blade.php.stub' => $componentParser->relativeViewPath(),
             'DummyComponentNamespace' => $componentParser->classNamespace(),
             'DummyComponent' => $componentParser->className(),
             'DummyModelNamespace' => $modelParser->classNamespace(),
             'DummyModelVariables' => Str::camel(Str::plural($modelTitle = preg_replace('/(.)(?=[A-Z])/u', '$1 ', $modelParser->className()))),
             'DummyModelVariable' => Str::camel($modelTitle),
             'DummyModel' => $modelParser->className(),
-            'DummyRouteUri' => $dummyRouteUri = str_replace('.', '/', $componentParser->viewName()),
-            'DummyViewName' => $componentParser->viewName(),
+            'DummyRouteUri' => $dummyRouteUri = str_replace('.', '/', strtolower($componentParser->className())),
+            'DummyViewName' =>  strtolower($componentParser->className()),
             'DummyViewTitle' => preg_replace('/(.)(?=[A-Z])/u', '$1 ', $componentParser->className()),
             'DummyWisdom' => $componentParser->wisdomOfTheTao(),
-        ]);
+        ], $this->option('force'));
 
         $this->warn('<info>' . $this->argument('class') . '</info> list component & view generated! ' .
             '<href=' . url($dummyRouteUri) . '>' . url($dummyRouteUri) . '</>');
