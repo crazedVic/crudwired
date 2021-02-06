@@ -1,39 +1,39 @@
-# NO LONGER MAINTAINED
+# Skele - Unopinionated
 
-This package is no longer maintained. Please consider my latest package here: https://github.com/redbastie/tailwire
+Rapid Laravel app development package.
 
------
+Heavily inspired by and mostly a repurposed version of [redbastie/skele](https://github.com/redbastie/skele)
+Kevin created and then discontinued work on this repo all within the span of a few days.
+It has some great features but was still too opinionated for me and therefore difficult to add to an existing project.
+I have reworked the commands and the corresponding code to not remove most of the features but introduce geater flexibility.
 
-# Skele
+To keep this package light and easy to integrate, please ensure you have livewire and tailwindcss installed.
+- [TailwindCSS](https://tailwindcss.com/docs/guides/laravel)
 
-Rapid Laravel Livewire + TailwindCSS app development package.
-
-<a href="https://www.youtube.com/watch?v=lSh-PPZrN-A"><img src="https://i.imgur.com/aErc5Kt.png"></a>
 
 #### Requirements
 
 - Laravel 8
+- PHP 7.4
 - NPM
 
 #### Packages Used
 
-- [Laravel Livewire](https://github.com/livewire/livewire)
 - [Laravel Timezone](https://github.com/jamesmills/laravel-timezone)
 - [Doctrine DBAL](https://github.com/doctrine/dbal)
-- [TailwindCSS](https://github.com/tailwindlabs/tailwindcss)
 - [Blade Heroicons](https://github.com/blade-ui-kit/blade-heroicons)
+- [Laravel Liveware](https://laravel-livewire.com/docs/2.x/installation)
 
 #### Features
 
 - Rapid scaffolding commands (auth, components, CRUD, models)
 - Automatic routing, migrations, timezones, & password hashing
-- Pre-configured TailwindCSS via webpack
 - Bare-bones blade views, ready for you to customize
-- PWA integration (icons, manifest, swipe down refresh)
 - Infinite scrolling & modal toggle support
-- & more
+- honey (removed)
+- PWA support (removed)
 
-## Installation
+## Installation - New Project
 
 Create a new Laravel 8 project:
 
@@ -51,7 +51,12 @@ Require Skele via composer:
 
 Install Skele:
 
-    php artisan skele:install
+    php artisan skele:install --force
+    comment out the default route in routes/web.php
+
+Install Tailwind:
+    php artisan skele:tailwind
+
 
 ## Commands
 
@@ -123,8 +128,3 @@ Generates a list component with searching & infinite scrolling for the specified
 
     php artisan skele:list Vehicles --model=Vehicle
     php artisan skele:list Admin/Vehicles --model=Admin/Vehicle
-
-
-#### Add package locally to laravel project
-
-    composer config repositories.local path "../redbastie-skele"
