@@ -2,7 +2,7 @@
 
 namespace  DummyComponentNamespace;
 
-use Redbastie\Skele\Components\Component;
+use Crazed\Crudwired\Components\Component;
 
 class Home extends Component
 {
