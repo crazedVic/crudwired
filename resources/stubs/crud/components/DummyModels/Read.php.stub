@@ -3,7 +3,7 @@
 namespace DummyComponentNamespace;
 
 use DummyModelNamespace\DummyModel;
-use Redbastie\Skele\Components\ModalComponent;
+use Crazed\Crudwired\Components\ModalComponent;
 
 class Read extends ModalComponent
 {
