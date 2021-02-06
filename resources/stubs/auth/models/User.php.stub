@@ -4,7 +4,7 @@ namespace DummyModelNamespace;
 
 use Faker\Generator;
 use Illuminate\Database\Schema\Blueprint;
-use Redbastie\Skele\Models\Authenticatable;
+use Crazed\Crudwired\Models\Authenticatable;
 
 class User extends Authenticatable
 {
