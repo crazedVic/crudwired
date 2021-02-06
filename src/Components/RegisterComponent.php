@@ -1,6 +1,6 @@
 <?php
 
-namespace Redbastie\Skele\Components;
+namespace Crazed\Crudwired\Components;
 
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
