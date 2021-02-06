@@ -20,14 +20,20 @@
                 </div>
 
                 <div class="flex space-x-3">
-                    <button type="button" wire:click="$emitTo('DummyRouteUri.read', 'show', {{ $DummyModelVariable->id }})">
+                    <button type="button" 
+                    wire:click="$emitTo('DummyRouteUri.read', 'show', {{ $DummyModelVariable->id }})" 
+                    class="focus:outline-none">
                         <x-heroicon-o-eye class="w-5 h-5"/>
                     </button>
-                    <button type="button" wire:click="$emitTo('DummyRouteUri.save', 'show', {{ $DummyModelVariable->id }})">
+                    <button type="button" 
+                    wire:click="$emitTo('DummyRouteUri.save', 'show', {{ $DummyModelVariable->id }})"
+                    class="focus:outline-none">
                         <x-heroicon-o-pencil-alt class="w-5 h-5"/>
                     </button>
-                    <button type="button" wire:click="delete({{ $DummyModelVariable->id }})"
-                            onclick="confirm('{{ __('Confirm delete?') }}') || event.stopImmediatePropagation()">
+                    <button type="button" 
+                    wire:click="delete({{ $DummyModelVariable->id }})"
+                    onclick="confirm('{{ __('Confirm delete?') }}') || event.stopImmediatePropagation()" 
+                    class="focus:outline-none">
                         <x-heroicon-o-trash class="w-5 h-5"/>
                     </button>
                 </div>
