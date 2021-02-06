@@ -3,7 +3,7 @@
 namespace DummyComponentNamespace;
 
 use DummyModelNamespace\DummyModel;
-use Redbastie\Skele\Components\ListComponent;
+use Crazed\Crudwired\Components\ListComponent;
 
 class DummyComponent extends ListComponent
 {
