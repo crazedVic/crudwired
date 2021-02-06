@@ -1,6 +1,6 @@
 <?php
 
-namespace Redbastie\Skele\Components;
+namespace Crazed\Crudwired\Components;
 
 class ModalComponent extends Component
 {
