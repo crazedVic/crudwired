@@ -2,10 +2,9 @@
 
 Rapid Laravel app development package.
 
-Heavily inspired by and mostly a repurposed version of [redbastie/skele](https://github.com/redbastie/skele)
-Kevin created and then discontinued work on this repo all within the span of a few days.
-It has some great features but was still too opinionated for me and therefore difficult to add to an existing project.
-I have reworked the commands and the corresponding code to not remove most of the features but introduce geater flexibility.
+Heavily inspired by and mostly a repurposed version of [redbastie/skele](https://github.com/redbastie/skele).  Kevin created and then discontinued work on this repo all within the span of a few days, instead focusing his efforts on [redbastie/tailwire](https://github.com/redbastie/tailwire), so be sure to check that out!
+
+In terms of skele, it had some great features but in my opinion (har har) was still too opinionated and above all pretty much impossible to integrate into an existing project.  I have therefore reworked most of the commands without removing most of the features, yet introducing greater flexibility.
 
 #### Requirements
 
