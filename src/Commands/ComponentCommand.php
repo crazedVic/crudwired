@@ -1,6 +1,6 @@
 <?php
 
-namespace Redbastie\Skele\Commands;
+namespace Crazed\Crudwired\Commands;
 
 use Illuminate\Console\Command;
 use Livewire\Commands\ComponentParser;
@@ -9,7 +9,7 @@ class ComponentCommand extends Command
 {
     use ManagesFiles;
 
-    protected $signature = 'skele:component {class} {--full} {--modal} {--force}';
+    protected $signature = 'crudwired:component {class} {--full} {--modal} {--force}';
 
     public function handle()
     {
@@ -31,7 +31,6 @@ class ComponentCommand extends Command
 
         $componentParser = new ComponentParser(config('livewire.class_namespace'),config('livewire.view_path'), 
                 $subFolder . $this->argument('class'));
-
         
         $this->createFiles($stubFolder, [
             'components' . DIRECTORY_SEPARATOR . 'DummyComponent.php.stub' => $componentParser->relativeClassPath(),
