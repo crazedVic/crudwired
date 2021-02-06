@@ -1,6 +1,6 @@
 <?php
 
-namespace Redbastie\Skele\Commands;
+namespace Crazed\Crudwired\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
@@ -10,7 +10,7 @@ class ListCommand extends Command
 {
     use ManagesFiles;
 
-    protected $signature = 'skele:list {class} {--model=} {--force}';
+    protected $signature = 'crudwired:list {class} {--model=} {--force}';
 
     public function handle()
     {
@@ -20,7 +20,7 @@ class ListCommand extends Command
         }
 
         $componentParser = new ComponentParser(config('livewire.class_namespace'),  config('livewire.view_path'), $this->argument('class'));
-        $modelParser = new ComponentParser(config('skele.model_path'), config('livewire.view_path'), $this->option('model'));
+        $modelParser = new ComponentParser(config('crudwired.model_path'), config('livewire.view_path'), $this->option('model'));
 
         $this->info('force set? ' . $this->option('force'));
 
