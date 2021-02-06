@@ -16,10 +16,11 @@ class CrudCommand extends Command
     public function handle()
     {
         if ($this->argument('class') == 'User') {
-            $this->createFiles('crud-user');
-
-            $this->warn('<info>User</info> CRUD components & views generated! ' .
-                '<href=' . url('users') . '>' . url('users') . '</>');
+            // todo: fix the crud-user stubs
+           // $this->createFiles('crud-user');
+            $this->warn('not implemented yet');
+           // $this->warn('<info>User</info> CRUD components & views generated! ' .
+           //     '<href=' . url('users') . '>' . url('users') . '</>');
         }
         else {
 
