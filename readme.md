@@ -87,7 +87,7 @@ At this point you can now use the remaining artisan commands to build out models
 
     php artisan crudwired:install [--force]
 
-Installs the base index component, config files, JS assets, index & layout/app views.  **The skele.js is copied into the resources/js folder, and then the app.js file is modified to append an import of the skele.js.  This .js file is required for infinite scrolling support.**
+Installs the base index component, config files, JS assets, index & layout/app views.  **The crudwired.js is copied into the resources/js folder, and then the app.js file is modified to append an import of the crudwired.js.  This .js file is required for infinite scrolling support.**
 
 ### Auth
 
