@@ -2,7 +2,7 @@
 
 namespace DummyComponentNamespace;
 
-use Redbastie\Skele\Components\ModalComponent;
+use Crazed\Crudwired\Components\ModalComponent;
 
 class DummyComponent extends ModalComponent
 {
