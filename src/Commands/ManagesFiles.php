@@ -18,16 +18,43 @@ trait ManagesFiles
         return $this->filesystem;
     }
 
+    protected function modifyFiles($stubFolder){
+        $working_folder = str_replace('/', DIRECTORY_SEPARATOR, __DIR__ . '/../../resources/stubs/' . $stubFolder);
+
+        foreach ($this->filesystem()->allFiles($working_folder) as $file) {
+            $this->info('processing file: ' . $file);
+            $filePath = Str::replaceLast('.stub', '', $file->getRelativePathname());
+            // fix for multi-OS support
+            $filePath = str_replace('/', DIRECTORY_SEPARATOR, $filePath);
+            $this->warn("Will attempt to modify file:  " . $filePath);
+            if ($this->filesystem()->exists($filePath)) {
+                $existing_file = $this->filesystem()->get($filePath);
+                if( !str_contains($existing_file, trim($file->getContents()))){
+                    $this->filesystem()->append($filePath,$file->getContents());
+                    $this->info('file has been updated successfully');
+                }
+                else{
+                    $this->info('file already updated');
+                }
+            }
+            else{
+                $this->warn("Existing file not found");
+            }
+        }
+    }
+
     protected function createFiles($stubFolder, $replaces = [], $force = false)
     {
         $working_folder = str_replace('/', DIRECTORY_SEPARATOR, __DIR__ . '/../../resources/stubs/' . $stubFolder);
 
         foreach ($this->filesystem()->allFiles($working_folder) as $file) {
-            //$this->info('processing file: ' . $file);
+            $this->info('processing file: ' . $file);
             // remove stub
             $filePath = Str::replaceLast('.stub', '', $this->replace($replaces, $file->getRelativePathname()));
             // fix for multi-OS support
             $filePath = str_replace('/', DIRECTORY_SEPARATOR, $filePath);
+            // show output
+            $this->warn("copying to " . $filePath);
 
             if ($fileDir = implode(DIRECTORY_SEPARATOR, array_slice(explode(DIRECTORY_SEPARATOR, $filePath), 0, -1))) {
                 $this->filesystem()->ensureDirectoryExists($fileDir);

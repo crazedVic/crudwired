@@ -1,2 +1,0 @@
-require('./bootstrap');
-require('../../vendor/redbastie/skele/resources/js/skele');
