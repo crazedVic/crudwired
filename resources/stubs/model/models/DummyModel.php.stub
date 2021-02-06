@@ -4,7 +4,7 @@ namespace DummyModelNamespace;
 
 use Faker\Generator;
 use Illuminate\Database\Schema\Blueprint;
-use Redbastie\Skele\Models\Model;
+use Crazed\Crudwired\Models\Model;
 
 class DummyModel extends Model
 {
