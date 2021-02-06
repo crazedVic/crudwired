@@ -1,6 +1,6 @@
 <?php
 
-namespace Redbastie\Skele\Commands;
+namespace Crazed\Crudwired\Commands;
 
 use Doctrine\DBAL\Schema\Comparator;
 use Illuminate\Console\Command;
@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Schema;
 
 class MigrateCommand extends Command
 {
-    protected $signature = 'skele:migrate {--fresh} {--seed}';
+    protected $signature = 'crudwired:migrate {--fresh} {--seed}';
 
     public function handle()
     {
@@ -21,7 +21,7 @@ class MigrateCommand extends Command
 
         if ($filesystem->exists($dir = app_path('Models'))) {
             foreach ($filesystem->allFiles($dir) as $file) {
-                $class = app(config('skele.model_path') . DIRECTORY_SEPARATOR . str_replace(['/', '.php'], ['\\', ''], $file->getRelativePathname()));
+                $class = app(config('crudwired.model_path') . DIRECTORY_SEPARATOR . str_replace(['/', '.php'], ['\\', ''], $file->getRelativePathname()));
 
                 if (method_exists($class, 'migration')) {
                     if (Schema::hasTable($class->getTable())) {
