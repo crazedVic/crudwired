@@ -1,6 +1,6 @@
 <?php
 
-namespace Redbastie\Skele\Commands;
+namespace Crazed\Crudwired\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
@@ -10,7 +10,7 @@ class TailwindCommand extends Command
 {
     use ManagesFiles;
 
-    protected $signature = 'skele:tailwind  {--force}';
+    protected $signature = 'crudwired:tailwind  {--force}';
 
     public function handle()
     {
