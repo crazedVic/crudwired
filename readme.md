@@ -7,10 +7,6 @@ Kevin created and then discontinued work on this repo all within the span of a f
 It has some great features but was still too opinionated for me and therefore difficult to add to an existing project.
 I have reworked the commands and the corresponding code to not remove most of the features but introduce geater flexibility.
 
-To keep this package light and easy to integrate, please ensure you have livewire and tailwindcss installed.
-- [TailwindCSS](https://tailwindcss.com/docs/guides/laravel)
-
-
 #### Requirements
 
 - Laravel 8
@@ -55,26 +51,45 @@ Install Skele:
     comment out the default route in routes/web.php
 
 Install Tailwind:
+    
     php artisan skele:tailwind
+    
+Install Auth scaffolding:
 
+    php artisan skele:auth
+
+
+## Installation - Existing Project
+
+If your project is not yet using [TailwindCSS](https://tailwindcss.com/docs/guides/laravel), you will need to either install it yourself, or run the following command:
+    
+    php artisan skele:tailwind [--force]
+    
+If your project is already using  [Laravel Liveware](https://laravel-livewire.com/docs/2.x/installation), the Artisan commands will generate Livewire components and views based off the livewire configuration, either the default one included in the vendor/livewire/config or the one published to config/livewire.php
+
+This package depends on some javascript code and of curse the presence of a view/layouts/app.blade.php which is setup to support Livewire.  By default the install command will not overwrite any files unless you specify --force, which should be used with caution.  The install command also creates a sample Index livewire component if one does not yet exist.
+
+    php artisan skele:install  [--force]
+
+At this point you can now use the remaining artisan commands to build out models, components, crud and lists in your existing project.  Details below.
 
 ## Commands
 
 ### Install
 
-    php artisan skele:install
+    php artisan skele:install [--force]
 
-Installs the base index component, user model & factory, config files, PWA icon & manifest, CSS & JS assets, index & layout views, and configures Tailwind via webpack.
+Installs the base index component, config files, JS assets, index & layout/app views.
 
 ### Auth
 
-    php artisan skele:auth
+    php artisan skele:auth  [--force]
 
-Generates auth scaffolding components & views for login, logout, password forgot & reset, register, and home.
+Generates user model & factory, auth scaffolding components & views for login, logout, password forgot & reset, register, and home.
 
 ### Model
 
-    php artisan skele:model {class}
+    php artisan skele:model {class}  [--force]
 
 Generates a new model & factory with automatic migration methods included.
 
@@ -109,7 +124,7 @@ Generates a new component & view file. Optionally use the `--full` option to gen
 
 ### CRUD
 
-    php artisan skele:crud {class}
+    php artisan skele:crud {class}  [--force]
 
 Generates CRUD components & views for a specified model class. If the model does not currently exist, it will be created automatically.
 
@@ -120,7 +135,7 @@ Generates CRUD components & views for a specified model class. If the model does
 
 ### List
 
-    php artisan skele:list {class} {--model=}
+    php artisan skele:list {class} {--model=}  [--force]
 
 Generates a list component with searching & infinite scrolling for the specified model. A `--model` must be specified.
 
