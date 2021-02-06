@@ -2,7 +2,7 @@
 
 namespace  DummyComponentNamespace\Auth;
 
-use Redbastie\Skele\Components\LoginComponent;
+use Crazed\Crudwired\Components\LoginComponent;
 
 class Login extends LoginComponent
 {
