@@ -3,7 +3,7 @@
 namespace App\Components\Users;
 
 use App\Models\User;
-use Redbastie\Skele\Components\ListComponent;
+use Crazed\Crudwired\Components\ListComponent;
 
 class Index extends ListComponent
 {
