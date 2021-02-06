@@ -26,8 +26,8 @@ I have reworked the commands and the corresponding code to not remove most of th
 - Automatic routing, migrations, timezones, & password hashing
 - Bare-bones blade views, ready for you to customize
 - Infinite scrolling & modal toggle support
-- honey (removed)
-- PWA support (removed)
+- ~~honey~~ 
+- ~~PWA support~~
 
 ## Installation - New Project
 
