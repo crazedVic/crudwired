@@ -31,7 +31,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Crazed\\Crudwired\\Providers\\LivewiredServiceProvider"
+                "Crazed\\Crudwired\\Providers\\CrudwiredServiceProvider"
             ]
         }
     }
