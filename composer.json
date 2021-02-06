@@ -1,9 +1,14 @@
 {
-    "name": "redbastie/skele",
-    "homepage": "https://github.com/redbastie/skele",
+    "name": "crazed/livewiring",
+    "homepage": "https://github.com/crazedVic/livewiring",
     "description": "Rapid Laravel Livewire + TailwindCSS app development package.",
     "license": "MIT",
     "authors": [
+         {
+            "name": "Victor Rubba",
+            "email": "vrubba@gmail.com",
+            "role": "Developer"
+        },
         {
             "name": "Kevin Dion",
             "email": "redbastie@icloud.com",
@@ -20,13 +25,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Redbastie\\Skele\\": "src"
+            "Crazed\\Livewired\\": "src"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Redbastie\\Skele\\Providers\\SkeleServiceProvider"
+                "Crazed\\Livewired\\Providers\\LivewiredServiceProvider"
             ]
         }
     }
