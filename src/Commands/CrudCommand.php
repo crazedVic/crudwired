@@ -1,6 +1,6 @@
 <?php
 
-namespace Redbastie\Skele\Commands;
+namespace Crazed\Crudwired\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
@@ -11,7 +11,7 @@ class CrudCommand extends Command
 {
     use ManagesFiles;
 
-    protected $signature = 'skele:crud {class} {--force}';
+    protected $signature = 'crudwired:crud {class} {--force}';
 
     public function handle()
     {
@@ -23,28 +23,10 @@ class CrudCommand extends Command
         }
         else {
 
-            // $this->info('Components path: '. config('livewire.class_namespace'));
-            // $this->info('Model path: ' . config('skele.model_path'));
-            // $this->info('Resource path: '. config('livewire.view_path'));
-
-            $modelParser = new ComponentParser(config('skele.model_path'), config('livewire.view_path'), $this->argument('class'));
+            $modelParser = new ComponentParser(config('crudwired.model_path'), config('livewire.view_path'), $this->argument('class'));
             $modelTitles = Str::plural(preg_replace('/(.)(?=[A-Z])/u', '$1 ', $modelParser->className()));
             $componentClass = Str::replaceLast((string)$modelParser->className(), Str::studly($modelTitles), $this->argument('class'));
             $componentParser = new ComponentParser(config('livewire.class_namespace'), config('livewire.view_path'), $componentClass);
-
-
-            // $this->info('components/DummyModels: ' .str_replace('.php', '', $componentParser->relativeClassPath()));
-            // $this->info('views/DummyViews: '. str_replace('.blade.php', '', $componentParser->relativeViewPath()));
-            // $this->info('DummyComponentNamespace: ' . $componentParser->classNamespace() . '\\' . $componentParser->className());
-            // $this->info('DummyModelNamespace: ' .$modelParser->classNamespace());
-            // $this->info('DummyModelVariables: ' . Str::camel($modelTitles));
-            // $this->info('DummyModelVariable: '.Str::camel(Str::singular($modelTitles)));
-            // $this->info('DummyModelTitles: ' . $modelTitles);
-            // $this->info('DummyModelTitle: '. Str::singular($modelTitles));
-            // $this->info('DummyModel: ' . $modelParser->className());
-            // $this->info('DummyRouteUri: ' . str_replace('.', '/', $componentParser->viewName()));
-            // $this->info('DummyViewName: ' . $componentParser->viewName());
-           
 
             $this->createFiles('crud', [
                 'components' . DIRECTORY_SEPARATOR . 'DummyModels' => str_replace('.php', '', $componentParser->relativeClassPath()),
@@ -64,7 +46,7 @@ class CrudCommand extends Command
                 '<href=' . url($dummyRouteUri) . '>' . url($dummyRouteUri) . '</>');
 
             if (!$this->fileExists($modelParser->relativeClassPath() || $this->option('force') )) {
-                $command_string = 'skele:model ' . $this->argument('class') . ($this->option('force') ? ' --force': null);
+                $command_string = 'crudwired:model ' . $this->argument('class') . ($this->option('force') ? ' --force': null);
                 $this->info("Calling: " . $command_string);
                 Artisan::call($command_string, [], $this->getOutput());
             }
