@@ -1,6 +1,6 @@
 {
-    "name": "crazed/livewired",
-    "homepage": "https://github.com/crazedVic/livewired",
+    "name": "crazed/crudwired",
+    "homepage": "https://github.com/crazedVic/crudwired",
     "description": "Rapid Laravel Livewire + TailwindCSS app development package.",
     "license": "MIT",
     "authors": [
@@ -25,13 +25,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Crazed\\Livewired\\": "src"
+            "Crazed\\Crudwired\\": "src"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Crazed\\Livewired\\Providers\\LivewiredServiceProvider"
+                "Crazed\\Crudwired\\Providers\\LivewiredServiceProvider"
             ]
         }
     }
