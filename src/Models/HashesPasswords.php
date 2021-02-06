@@ -1,6 +1,6 @@
 <?php
 
-namespace Redbastie\Skele\Models;
+namespace Crazed\Crudwired\Models;
 
 use Illuminate\Support\Facades\Hash;
 
