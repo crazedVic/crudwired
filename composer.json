@@ -1,6 +1,6 @@
 {
-    "name": "crazed/livewiring",
-    "homepage": "https://github.com/crazedVic/livewiring",
+    "name": "crazed/livewired",
+    "homepage": "https://github.com/crazedVic/livewired",
     "description": "Rapid Laravel Livewire + TailwindCSS app development package.",
     "license": "MIT",
     "authors": [
