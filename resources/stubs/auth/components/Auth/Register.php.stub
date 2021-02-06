@@ -2,7 +2,7 @@
 
 namespace  DummyComponentNamespace\Auth;
 
-use Redbastie\Skele\Components\RegisterComponent;
+use Crazed\Crudwired\Components\RegisterComponent;
 
 class Register extends RegisterComponent
 {
