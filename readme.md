@@ -48,13 +48,18 @@ Require Skele via composer:
 Install Skele:
 
     php artisan skele:install --force
-    comment out the default route in routes/web.php
+    
+Update routes/web.php, comment out the default route in routes/web.php:
+
+    // Route::get('/', function () {
+    //     return view('welcome');
+    // });
 
 Install Tailwind:
     
     php artisan skele:tailwind
     
-Install Auth scaffolding:
+Install Auth scaffolding (optional):
 
     php artisan skele:auth
 
@@ -79,13 +84,19 @@ At this point you can now use the remaining artisan commands to build out models
 
     php artisan skele:install [--force]
 
-Installs the base index component, config files, JS assets, index & layout/app views.
+Installs the base index component, config files, JS assets, index & layout/app views.  **The skele.js is copied into the resources/js folder, and then the app.js file is modified to append an import of the skele.js.  This .js file is required for infinite scrolling support.**
 
 ### Auth
 
     php artisan skele:auth  [--force]
 
-Generates user model & factory, auth scaffolding components & views for login, logout, password forgot & reset, register, and home.
+Generates user model & factory, auth scaffolding components & views for login, logout, password forgot & reset, register, and home.  **No longer supports Honey, Honey was creating additional tables during migration and there appears to be now way to avoid this, so removed. User model changes are now handled by Auth instead of Install.**
+
+### Tailwind
+
+    php artisan skele:tailwind [--force]
+
+Generates the tailwind.config.js and the webpack.mix.js, updates the resources/css/app.css to include the @tailwind libraries.  Then uses npm to install all the necessary libraries, and then npm run dev to compile everything.
 
 ### Model
 
@@ -114,7 +125,7 @@ Runs the automatic migrations via the `migration` methods in your models. This u
 
     php artisan skele:component {class} {--full} {--modal}
 
-Generates a new component & view file. Optionally use the `--full` option to generate a full-page component with automatic routing properties included, or `--modal` to generate a modal component.
+Generates a new component & view file. Optionally use the `--full` option to generate a full-page component with automatic routing properties included, or `--modal` to generate a modal component.  **Components are generated into folders grouped by type; modal, partial, full.**
 
 #### Examples
 
@@ -126,7 +137,7 @@ Generates a new component & view file. Optionally use the `--full` option to gen
 
     php artisan skele:crud {class}  [--force]
 
-Generates CRUD components & views for a specified model class. If the model does not currently exist, it will be created automatically.
+Generates CRUD components & views for a specified model class. If the model does not currently exist, it will be created automatically.  **By default the Index livewire component has the middleware = 'auth' disabled, uncomment to remove anonymous access from the generated CRUD views.**
 
 #### Examples
 
