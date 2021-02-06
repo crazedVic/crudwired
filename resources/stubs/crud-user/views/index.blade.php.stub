@@ -4,9 +4,9 @@
     <h1 class="text-xl mb-4">@yield('title')</h1>
 
     <div class="flex justify-between space-x-4 mb-4">
-        <input type="search" placeholder="{{ __('Search') }}" class="min-w-0" wire:model.debounce.500ms="model.search">
+        <input type="search" placeholder="{{ __('Search') }}" class="rounded-md min-w-0" wire:model.debounce.500ms="model.search">
 
-        <button type="button" class="text-white bg-black px-3 py-2" wire:click="$emitTo('users.save', 'show')">
+        <button type="button" class="text-white bg-black px-3 py-2 rounded-md " wire:click="$emitTo('users.save', 'show')">
             {{ __('Create') }}
         </button>
     </div>
@@ -20,15 +20,18 @@
                 </div>
 
                 <div class="flex space-x-3">
-                    <button type="button" wire:click="$emitTo('users.read', 'show', {{ $user->id }})">
-                        <x-heroicon-o-eye class="w-5 h-5"/>
+                    <button type="button" wire:click="$emitTo('users.read', 'show', {{ $user->id }})" 
+                    class="focus:outline-none">
+                        <x-heroicon-o-eye class="w-5 h-5 text-gray-500"/>
                     </button>
-                    <button type="button" wire:click="$emitTo('users.save', 'show', {{ $user->id }})">
-                        <x-heroicon-o-pencil-alt class="w-5 h-5"/>
+                    <button type="button" wire:click="$emitTo('users.save', 'show', {{ $user->id }})" 
+                    class="focus:outline-none">
+                        <x-heroicon-o-pencil-alt class="w-5 h-5 text-gray-500"/>
                     </button>
                     <button type="button" wire:click="delete({{ $user->id }})"
-                            onclick="confirm('{{ __('Confirm delete?') }}') || event.stopImmediatePropagation()">
-                        <x-heroicon-o-trash class="w-5 h-5"/>
+                            onclick="confirm('{{ __('Confirm delete?') }}') || event.stopImmediatePropagation()" 
+                    class="focus:outline-none">
+                        <x-heroicon-o-trash class="w-5 h-5 text-gray-500"/>
                     </button>
                 </div>
             </div>
