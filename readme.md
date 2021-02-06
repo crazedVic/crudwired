@@ -1,4 +1,4 @@
-# Crazed/crudwired
+# crazed/crudwired
 
 Rapid Laravel app development package.
 
