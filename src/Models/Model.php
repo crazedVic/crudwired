@@ -1,6 +1,6 @@
 <?php
 
-namespace Redbastie\Skele\Models;
+namespace Crazed\Crudwired\\Models;
 
 use Faker\Generator;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
