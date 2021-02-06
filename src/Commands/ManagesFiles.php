@@ -37,7 +37,7 @@ trait ManagesFiles
            // $this->warn('Created file: <info>' . $filePath . '</info>');
 
             // prevent override by default
-            if (!$this->filesystem()->exists($filePath || $force)) {
+            if ($force || !$this->filesystem()->exists($filePath)) {
                 $this->filesystem()->put($filePath, $this->replace($replaces, $file->getContents()));
                 $this->info('Created file: <info>' . $filePath . '</info>');
             }

@@ -8,7 +8,7 @@ use Redbastie\Skele\Components\ListComponent;
 class DummyComponent extends ListComponent
 {
     public $routeUri = '/DummyRouteUri';
-    public $routeName = 'DummyViewName';
+    public $routeName = 'DummyRouteUri';
 
     public function render()
     {

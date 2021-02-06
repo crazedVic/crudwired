@@ -10,17 +10,17 @@ Route::middleware('web')->group(function () {
 
     if ($filesystem->exists($dir)) {
         foreach ($filesystem->allFiles($dir) as $file) {
-            error_log('file ' . $file);
-            error_log('rel path  ' . $file->getRelativePathname());
             $namespace = config('livewire.class_namespace') . DIRECTORY_SEPARATOR . str_replace(['/', '.php'], ['\\', ''], $file->getRelativePathname());
-            error_log('namepsace  ' . $namespace);
             $class = app($namespace);         
 
             if (property_exists($class, 'routeUri') && $class->routeUri) {
                 $route = Route::get($class->routeUri, $namespace);
+                error_log($class->routeUri);
 
                 if (property_exists($class, 'routeName') && $class->routeName) {
                     $route->name($class->routeName);
+                    error_log($class->routeName);
+                   
                 }
 
                 if (property_exists($class, 'routeMiddleware') && $class->routeMiddleware) {

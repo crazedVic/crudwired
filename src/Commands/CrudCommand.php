@@ -56,15 +56,17 @@ class CrudCommand extends Command
                 'DummyModelTitles' => $modelTitles,
                 'DummyModelTitle' => Str::singular($modelTitles),
                 'DummyModel' => $modelParser->className(),
-                'DummyRouteUri' => $dummyRouteUri = str_replace('.', '/', $componentParser->viewName()),
-                'DummyViewName' => $componentParser->viewName(),
+                'DummyRouteUri' => $dummyRouteUri = str_replace('.', '/', strtolower($componentParser->className())),
+                'DummyViewName' =>  strtolower($componentParser->viewName()),
             ], $this->option('force'));
 
             $this->warn('<info>' . $this->argument('class') . '</info> CRUD components & views generated! ' .
                 '<href=' . url($dummyRouteUri) . '>' . url($dummyRouteUri) . '</>');
 
             if (!$this->fileExists($modelParser->relativeClassPath() || $this->option('force') )) {
-                Artisan::call('skele:model ' . $this->argument('class'), [], $this->getOutput());
+                $command_string = 'skele:model ' . $this->argument('class') . ($this->option('force') ? ' --force': null);
+                $this->info("Calling: " . $command_string);
+                Artisan::call($command_string, [], $this->getOutput());
             }
         }
     }

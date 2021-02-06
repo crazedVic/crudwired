@@ -7,7 +7,7 @@ use Redbastie\Skele\Components\Component;
 class DummyComponent extends Component
 {
     public $routeUri = '/DummyRouteUri';
-    public $routeName = 'DummyViewName';
+    public $routeName = 'DummyRouteUri';
 
     public function render()
     {
