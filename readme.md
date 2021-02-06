@@ -138,9 +138,9 @@ Generates a new component & view file. Optionally use the `--full` option to gen
 
 ### CRUD
 
-    php artisan crudwired:crud {class}  [--force]
+    php artisan crudwired:crud {class}  [--force] [--auth]
 
-Generates CRUD components & views for a specified model class. If the model does not currently exist, it will be created automatically.  **By default the Index livewire component has the middleware = 'auth' disabled, uncomment to remove anonymous access from the generated CRUD views.**
+Generates CRUD components & views for a specified model class. If the model does not currently exist, it will be created automatically.  **By default the Index livewire component has the middleware = 'auth' disabled, use --auth to prevent anon access to the generated CRUD views.**
 
 #### Examples
 
