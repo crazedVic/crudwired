@@ -11,23 +11,36 @@ class CrudCommand extends Command
 {
     use ManagesFiles;
 
-    protected $signature = 'crudwired:crud {class} {--force}';
+    protected $signature = 'crudwired:crud {class} {--force} {--auth}';
 
     public function handle()
     {
+
+        $modelParser = new ComponentParser(config('crudwired.model_path'), 
+            config('livewire.view_path'), $this->argument('class'));
+
+        $modelTitles = Str::plural(preg_replace('/(.)(?=[A-Z])/u', '$1 ', 
+            $modelParser->className()));
+
+        $componentClass = Str::replaceLast((string)$modelParser->className(), 
+            Str::studly($modelTitles), $this->argument('class'));
+
+        $componentParser = new ComponentParser(config('livewire.class_namespace'),
+                config('livewire.view_path'), $componentClass);
+
         if ($this->argument('class') == 'User') {
             // todo: fix the crud-user stubs
-           // $this->createFiles('crud-user');
+            $this->createFiles('crud-user', [
+                'components' => str_replace('.php', '', $componentParser->relativeClassPath()),
+                'views' => str_replace('.blade.php', '', $componentParser->relativeViewPath()),
+                'DummyComponentNamespace' => $componentParser->classNamespace() . '\\' . $componentParser->className(),
+                'AuthDirective' => $this->option('auth') ? '' : '//'
+            ], $this->option('force'));
             $this->warn('not implemented yet');
-           // $this->warn('<info>User</info> CRUD components & views generated! ' .
-           //     '<href=' . url('users') . '>' . url('users') . '</>');
+            $this->warn('<info>User</info> CRUD components & views generated! ' .
+               '<href=' . url('users') . '>' . url('users') . '</>');
         }
         else {
-
-            $modelParser = new ComponentParser(config('crudwired.model_path'), config('livewire.view_path'), $this->argument('class'));
-            $modelTitles = Str::plural(preg_replace('/(.)(?=[A-Z])/u', '$1 ', $modelParser->className()));
-            $componentClass = Str::replaceLast((string)$modelParser->className(), Str::studly($modelTitles), $this->argument('class'));
-            $componentParser = new ComponentParser(config('livewire.class_namespace'), config('livewire.view_path'), $componentClass);
 
             $this->createFiles('crud', [
                 'components' . DIRECTORY_SEPARATOR . 'DummyModels' => str_replace('.php', '', $componentParser->relativeClassPath()),
@@ -41,6 +54,7 @@ class CrudCommand extends Command
                 'DummyModel' => $modelParser->className(),
                 'DummyRouteUri' => $dummyRouteUri = str_replace('.', '/', strtolower($componentParser->className())),
                 'DummyViewName' =>  strtolower($componentParser->viewName()),
+                'AuthDirective' => $this->option('auth') ? '' : '//'
             ], $this->option('force'));
 
             $this->warn('<info>' . $this->argument('class') . '</info> CRUD components & views generated! ' .

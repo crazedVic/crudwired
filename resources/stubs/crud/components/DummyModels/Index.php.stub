@@ -9,8 +9,7 @@ class Index extends ListComponent
 {
     public $routeUri = '/DummyRouteUri';
     public $routeName = 'DummyRouteUri.index';
-    // public $routeMiddleware = 'auth';
-
+    AuthDirectivepublic $routeMiddleware = 'auth';
 
     public function render()
     {

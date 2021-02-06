@@ -13,16 +13,22 @@ class ModelCommand extends Command
 
     public function handle()
     {
-        $modelParser = new ComponentParser(config('crudwired.model_path'),  config('livewire.view_path'), $this->argument('class'));
-        $factoryParser = new ComponentParser(config('crudwired.factory_path'),  config('livewire.view_path'), $this->argument('class') . 'Factory');
+        $modelParser = new ComponentParser(config('crudwired.model_path'), 
+            config('livewire.view_path'), $this->argument('class'));
 
+        $factoryParser = new ComponentParser(config('crudwired.factory_path'),
+            config('livewire.view_path'), $this->argument('class') . 'Factory');
+
+        $factory_relative_path = strtolower(str_replace('\\',
+            DIRECTORY_SEPARATOR, config('crudwired.factory_path')));
+        
         $this->createFiles('model', [
             'models' . DIRECTORY_SEPARATOR . 'DummyModel.php.stub' => $modelParser->relativeClassPath(),
-            'factories' => base_path() .DIRECTORY_SEPARATOR . config('crudwired.factory_path'),
+            'factories'  => $factory_relative_path,
             'DummyModelNamespace' => $modelParser->classNamespace(),
             'DummyModel' => $modelParser->className(),
             'DummyFactoryNamespace' => $factoryParser->classNamespace(),
-            'DummyFactory' => $factoryParser->className(),
+            'DummyFactory' => $factoryParser->className()
         ], $this->option('force'));
 
         $this->warn('<info>' . $this->argument('class') . '</info> model & factory generated!');

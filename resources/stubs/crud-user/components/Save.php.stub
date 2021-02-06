@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Components\Users;
+namespace DummyComponentNamespace;
 
 use App\Models\User;
 use Crazed\Crudwired\Components\ModalComponent;
@@ -11,7 +11,7 @@ class Save extends ModalComponent
 
     public function render()
     {
-        return view('users.save');
+        return view('livewire.users.save');
     }
 
     public function show(User $user = null)

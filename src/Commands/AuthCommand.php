@@ -15,16 +15,27 @@ class AuthCommand extends Command
     public function handle()
     {
 
-        $factoryParser = new ComponentParser(config('crudwired.factory_path'),  config('livewire.view_path'), 'UserFactory');
+        $componentParser = new ComponentParser(config('livewire.class_namespace'), 
+            config('livewire.view_path'), 'Home');
+        $modelParser = new ComponentParser(config('crudwired.model_path'),  
+            config('livewire.view_path'), 'User');
+        
+        $factory_relative_path = strtolower(str_replace('\\',
+            DIRECTORY_SEPARATOR,config('crudwired.factory_path')));
 
+        $component_relative_path = str_replace(['\\', 'App'],
+            [DIRECTORY_SEPARATOR, 'app'], config('livewire.class_namespace'));
+
+        $this->info($componentParser->relativeClassPath());
+        $this->info($componentParser->relativeViewPath());
+        
         $this->createFiles('auth', [
-            'components'  =>config('livewire.class_namespace'),
+            'components'  => $component_relative_path,
             'views' => config('livewire.view_path'),
-            'models' => config('crudwired.model_path'),
-            'factories' => base_path() .DIRECTORY_SEPARATOR . config('crudwired.factory_path'),
+            'models' . DIRECTORY_SEPARATOR . 'User.php.stub' => $modelParser->relativeClassPath(),
+            'factories' => base_path() .DIRECTORY_SEPARATOR . $factory_relative_path,
             'DummyModelNamespace' => config('crudwired.model_path'),
-            "DummyComponentNamespace" => config('livewire.class_namespace'),
-            'DummyFactoryNamespace' => $factoryParser->classNamespace()
+            "DummyComponentNamespace" => config('livewire.class_namespace')
 
         ], $this->option('force'));
 

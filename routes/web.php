@@ -10,7 +10,8 @@ Route::middleware('web')->group(function () {
 
     if ($filesystem->exists($dir)) {
         foreach ($filesystem->allFiles($dir) as $file) {
-            $namespace = config('livewire.class_namespace') . DIRECTORY_SEPARATOR . str_replace(['/', '.php'], ['\\', ''], $file->getRelativePathname());
+            $namespace = config('livewire.class_namespace') . "\\" . 
+                str_replace(['/', '.php'], ['\\', ''], $file->getRelativePathname());
             $class = app($namespace);         
 
             if (property_exists($class, 'routeUri') && $class->routeUri) {

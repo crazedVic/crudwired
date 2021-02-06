@@ -3,5 +3,5 @@
 return [
 
    'model_path' => 'App\\Models',
-   'factory_path' => 'Database\\Factories'
+   'factory_path' => 'Database\\Factories',
 ];

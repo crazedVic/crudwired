@@ -21,7 +21,9 @@ class MigrateCommand extends Command
 
         if ($filesystem->exists($dir = app_path('Models'))) {
             foreach ($filesystem->allFiles($dir) as $file) {
-                $class = app(config('crudwired.model_path') . DIRECTORY_SEPARATOR . str_replace(['/', '.php'], ['\\', ''], $file->getRelativePathname()));
+                
+                $class = app(config('crudwired.model_path') . "\\" . 
+                    str_replace(['/', '.php'], ['\\', ''], $file->getRelativePathname()));
 
                 if (method_exists($class, 'migration')) {
                     if (Schema::hasTable($class->getTable())) {
