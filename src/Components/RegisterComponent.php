@@ -14,7 +14,7 @@ class RegisterComponent extends Component
 
     public function render()
     {
-        return view('auth.register');
+        return view('livewire.auth.register');
     }
 
     public function rules()

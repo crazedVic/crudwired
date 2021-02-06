@@ -13,7 +13,7 @@ class PasswordForgotComponent extends Component
 
     public function render()
     {
-        return view('auth.password-forgot');
+        return view('livewire.auth.password-forgot');
     }
 
     public function rules()

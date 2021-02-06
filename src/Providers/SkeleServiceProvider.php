@@ -10,7 +10,7 @@ class SkeleServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                //\Redbastie\Skele\Commands\AuthCommand::class,
+                \Redbastie\Skele\Commands\AuthCommand::class,
                 \Redbastie\Skele\Commands\CrudCommand::class,
                 \Redbastie\Skele\Commands\ComponentCommand::class,
                 \Redbastie\Skele\Commands\InstallCommand::class,

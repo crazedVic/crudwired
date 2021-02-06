@@ -23,7 +23,7 @@ class PasswordResetComponent extends Component
 
     public function render()
     {
-        return view('auth.password-reset');
+        return view('livewire.auth.password-reset');
     }
 
     public function rules()
