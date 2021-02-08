@@ -60,7 +60,7 @@ Install Tailwind:
     
 Install Auth scaffolding (optional):
 
-    php artisan crudwired:auth
+    php artisan crudwired:auth --force
 
 
 ## Installation - Existing Project
