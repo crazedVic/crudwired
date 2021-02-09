@@ -26,8 +26,12 @@ class AuthCommand extends Command
         $component_relative_path = str_replace(['\\', 'App'],
             [DIRECTORY_SEPARATOR, 'app'], config('livewire.class_namespace'));
 
-        $this->info($componentParser->relativeClassPath());
-        $this->info($componentParser->relativeViewPath());
+        
+        if ($this->option('force')){
+            $this->deleteFiles([
+                'database/migrations/2014_10_12_000000_create_users_table.php'
+            ]);
+        }
         
         $this->createFiles('auth', [
             'components'  => $component_relative_path,
