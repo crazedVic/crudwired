@@ -41,11 +41,11 @@ class MigrateCommand extends Command
                         $tableDiff = (new Comparator)->diffTable($classTableDetails, $tempTableDetails);
 
                         if ($tableDiff) {
-                            $this->info(print_r($tableDiff));
+                            //$this->info(print_r($tableDiff));
                             $schemaManager->alterTable($tableDiff);
                         }
 
-                        //Schema::drop($tempTable);
+                        Schema::drop($tempTable);
                     }
                     else {
                         Schema::create($class->getTable(), function (Blueprint $table) use ($class) {
