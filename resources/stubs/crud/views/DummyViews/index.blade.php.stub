@@ -44,7 +44,7 @@
         @endforelse
         @if($this->infiniteScroll)
             <div class="flex justify-center mx-auto w-full my-2 py-8">
-                <a class="bg-black text-white rounded-md shadow-md px-2 py-1" wire:click="infiniteScroll" href="#">Load More</a>
+                <a class="bg-black text-white rounded-md shadow-md px-2 py-1" wire:click.prevent="infiniteScroll" href="">Load More</a>
             </div>
         @endif
     </div>
