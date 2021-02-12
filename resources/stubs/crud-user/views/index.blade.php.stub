@@ -20,16 +20,16 @@
                 </div>
 
                 <div class="flex space-x-3">
-                    <button type="button" wire:click="$emitTo('users.read', 'show', {{ $user->id }})" 
+                    <button type="button" wire:click="$emitTo('users.read', 'show', {{ $user->id }})"
                     class="focus:outline-none">
                         <x-heroicon-o-eye class="w-5 h-5 text-gray-500"/>
                     </button>
-                    <button type="button" wire:click="$emitTo('users.save', 'show', {{ $user->id }})" 
+                    <button type="button" wire:click="$emitTo('users.save', 'show', {{ $user->id }})"
                     class="focus:outline-none">
                         <x-heroicon-o-pencil-alt class="w-5 h-5 text-gray-500"/>
                     </button>
                     <button type="button" wire:click="delete({{ $user->id }})"
-                            onclick="confirm('{{ __('Confirm delete?') }}') || event.stopImmediatePropagation()" 
+                            onclick="confirm('{{ __('Confirm delete?') }}') || event.stopImmediatePropagation()"
                     class="focus:outline-none">
                         <x-heroicon-o-trash class="w-5 h-5 text-gray-500"/>
                     </button>
@@ -38,6 +38,11 @@
         @empty
             <p class="p-4">{{ __('No results found.') }}</p>
         @endforelse
+        @if($this->infiniteScroll)
+            <div class="flex justify-center mx-auto w-full my-2 py-8">
+                <a class="bg-black text-white rounded-md shadow-md px-2 py-1" wire:click="infiniteScroll" href="#">Load More</a>
+            </div>
+        @endif
     </div>
 
     @if($this->infiniteScroll)

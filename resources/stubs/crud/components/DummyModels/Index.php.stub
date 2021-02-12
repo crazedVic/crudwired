@@ -7,6 +7,7 @@ use Crazed\Crudwired\Components\ListComponent;
 
 class Index extends ListComponent
 {
+
     public $routeUri = '/DummyRouteUri';
     public $routeName = 'DummyRouteUri.index';
     AuthDirectivepublic $routeMiddleware = 'auth';
@@ -22,6 +23,8 @@ class Index extends ListComponent
     {
         $query = DummyModel::query();
 
+        // $this->>model can be used to hold variables dynamically
+        // i.e. wire:model.debounce.500ms="model.search">
         if ($this->model('search')) {
             $query->where('name', 'like', '%' . $this->model('search') . '%');
         }

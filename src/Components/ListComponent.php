@@ -11,7 +11,7 @@ class ListComponent extends Component
 
     public function query()
     {
-        return Model::query();
+        return Model::all();
     }
 
     public function getInfiniteScrollProperty()
