@@ -9,6 +9,7 @@ class ModalComponent extends Component
 
     public function toggle()
     {
+
         $this->hidden = !$this->hidden;
 
         if ($this->hidden) {
