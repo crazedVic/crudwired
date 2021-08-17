@@ -7,7 +7,7 @@
         <input type="search" placeholder="{{ __('Search') }}"
             class="min-w-0 w-1/3 rounded-md" wire:model.debounce.500ms="model.search">
 
-        <button type="button" class="text-white rounded-md bg-black px-3 py-2" wire:click="$emitTo('DummyRouteUri.save', 'show')">
+        <button type="button" class="btn bg-green-600" wire:click="$emitTo('DummyRouteUri.save', 'show')">
             {{ __('Create') }}
         </button>
     </div>

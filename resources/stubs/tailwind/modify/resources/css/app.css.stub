@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*default button class, only need to give it a bg-color*/
+.btn{
+    @apply rounded-md;
+    @apply px-1 md:px-5 py-1 md:py-2;
+    @apply text-white;
+    @apply focus:outline-none;
+    @apply text-center;
+    @apply whitespace-nowrap;
+    @apply min-w-24 md:min-w-36;
+    @apply inline-block;
+}
