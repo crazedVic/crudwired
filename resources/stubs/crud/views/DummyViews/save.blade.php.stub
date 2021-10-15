@@ -21,7 +21,7 @@
                 <button type="button" class="btn bg-red-600" wire:click="toggle">
                     {{ __('Cancel') }}
                 </button>
-                <button type="submit" class="btn bg-green-600">
+                <button type="button" class="btn bg-green-600" wire:click.prevent="save">
                     {{ __('Save') }}
                 </button>
             </div>
