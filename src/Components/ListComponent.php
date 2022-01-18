@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ListComponent extends Component
 {
     public $perPage = 15;
+    public $perPageIncrease = 15;
     protected $listeners = ['$refresh', 'infiniteScroll'];
 
     public function query()
@@ -21,6 +22,6 @@ class ListComponent extends Component
 
     public function infiniteScroll()
     {
-        $this->perPage += 15;
+        $this->perPage += $this->perPageIncrease;
     }
 }
