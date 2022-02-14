@@ -19,7 +19,6 @@
         "barryvdh/laravel-ide-helper": "^2.0",
         "blade-ui-kit/blade-heroicons": "^0.3",
         "doctrine/dbal": "^3.0",
-        "jamesmills/laravel-timezone": "^1.9",
         "laravel/framework": ">=8.0",
         "livewire/livewire": ">=2.0"
     },
@@ -34,5 +33,10 @@
                 "Crazed\\Crudwired\\Providers\\CrudwiredServiceProvider"
             ]
         }
+    },
+    "notused":{
+        "jamesmills/laravel-timezone": "^1.9"
     }
+    
+    
 }
